@@ -666,3 +666,571 @@ h2 {
     transition-duration: .01ms !important;
   }
 }
+
+/* =========================================================
+   CORREÇÃO RESPONSIVA — HEADER + HERO MOBILE
+   ========================================================= */
+
+@media (max-width: 760px) {
+
+  /* -------------------------------------------------------
+     HEADER
+     ------------------------------------------------------- */
+
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    /*
+      Quando o menu abrir, o header passa a reservar
+      espaço para o menu que está visualmente aberto.
+    */
+    transition: padding-bottom 0.25s ease;
+  }
+
+
+  /* -------------------------------------------------------
+     NAV
+     ------------------------------------------------------- */
+
+  .nav {
+    position: relative;
+
+    width: 100%;
+
+    min-height: 66px;
+    height: 66px;
+
+    display: flex;
+    align-items: center;
+  }
+
+
+  /* -------------------------------------------------------
+     BOTÃO DO MENU
+     ------------------------------------------------------- */
+
+  .nav-toggle {
+    position: relative;
+    z-index: 1002;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 42px;
+    height: 42px;
+
+    padding: 0;
+
+    border: 0;
+
+    background: transparent;
+
+    color: var(--text);
+
+    cursor: pointer;
+  }
+
+
+  /* -------------------------------------------------------
+     MENU MOBILE
+     ------------------------------------------------------- */
+
+  .nav-links {
+    position: absolute;
+
+    top: 66px;
+    left: 0;
+    right: 0;
+
+    z-index: 1001;
+
+    display: none;
+
+    width: 100%;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 0;
+
+    padding: 10px 20px 24px;
+
+    background: var(--background);
+
+    border-top: 1px solid var(--border);
+
+    border-bottom: 1px solid var(--border);
+
+    box-shadow:
+      0 14px 30px rgba(23, 35, 31, 0.08);
+  }
+
+
+  /*
+    O menu continua sendo controlado pelo JavaScript
+    através da classe .open.
+  */
+
+  .nav-links.open {
+    display: flex;
+  }
+
+
+  /* -------------------------------------------------------
+     LINKS DO MENU
+     ------------------------------------------------------- */
+
+  .nav-links a {
+    width: 100%;
+    max-width: 220px;
+
+    padding: 15px 10px;
+
+    text-align: center;
+
+    font-size: 0.78rem;
+
+    line-height: 1.3;
+
+    color: var(--text);
+
+    border-bottom: 1px solid transparent;
+  }
+
+
+  .nav-links a:hover {
+    color: var(--accent-dark);
+  }
+
+
+  .nav-links a[aria-current="page"] {
+    color: var(--accent-dark);
+  }
+
+
+  /* -------------------------------------------------------
+     HEADER ABERTO
+     -------------------------------------------------------
+
+     O ponto principal da correção.
+
+     Como o menu é absoluto, ele não aumenta a altura
+     natural do header.
+
+     Quando .open existe, adicionamos espaço ao header
+     para que o HERO seja empurrado para baixo.
+     ------------------------------------------------------- */
+
+  .site-header:has(.nav-links.open) {
+    padding-bottom: 245px;
+  }
+
+
+  /* -------------------------------------------------------
+     HERO
+     ------------------------------------------------------- */
+
+  .hero {
+    width: 100%;
+
+    max-width: none;
+
+    margin: 0;
+
+    padding: 65px 16px 75px;
+
+    overflow: hidden;
+  }
+
+
+  /*
+    Importante:
+    elimina o antigo margin-left: 16px que existia
+    no style.css.
+  */
+
+  .hero-inner {
+    width: min(100%, 620px);
+
+    min-height: auto;
+
+    margin: 0 auto;
+
+    padding: 0;
+
+    display: grid;
+
+    grid-template-columns: 1fr;
+
+    gap: 45px;
+
+    align-items: start;
+  }
+
+
+  /* -------------------------------------------------------
+     HERO CONTENT
+     ------------------------------------------------------- */
+
+  .hero-content {
+    width: 100%;
+
+    min-width: 0;
+  }
+
+
+  /* -------------------------------------------------------
+     EYEBROW
+     ------------------------------------------------------- */
+
+  .hero .eyebrow {
+    margin-bottom: 20px;
+
+    font-size: 0.6rem;
+
+    line-height: 1.5;
+
+    letter-spacing: 0.13em;
+  }
+
+
+  /* -------------------------------------------------------
+     TÍTULO
+     ------------------------------------------------------- */
+
+  .hero h1 {
+    width: 100%;
+
+    max-width: 100%;
+
+    margin: 0 0 25px;
+
+    font-size: clamp(
+      3rem,
+      12vw,
+      4rem
+    );
+
+    line-height: 0.98;
+
+    letter-spacing: -0.05em;
+
+    overflow-wrap: normal;
+
+    word-break: normal;
+  }
+
+
+  .hero h1 em {
+    display: block;
+
+    margin-top: 3px;
+  }
+
+
+  /* -------------------------------------------------------
+     DESCRIÇÃO
+     ------------------------------------------------------- */
+
+  .hero .lede {
+    width: 100%;
+
+    max-width: 100%;
+
+    margin: 0;
+
+    font-size: 0.94rem;
+
+    line-height: 1.7;
+  }
+
+
+  /* -------------------------------------------------------
+     AUTORA
+     ------------------------------------------------------- */
+
+  .hero-author {
+    width: 100%;
+
+    margin-top: 27px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+  }
+
+
+  .author-avatar {
+    width: 43px;
+    height: 43px;
+
+    flex: 0 0 43px;
+  }
+
+
+  .hero-author > div:last-child {
+    min-width: 0;
+  }
+
+
+  .hero-author strong {
+    display: block;
+
+    font-size: 0.74rem;
+
+    line-height: 1.35;
+  }
+
+
+  .hero-author span {
+    display: block;
+
+    max-width: 260px;
+
+    font-size: 0.59rem;
+
+    line-height: 1.45;
+  }
+
+
+  /* -------------------------------------------------------
+     AÇÕES
+     ------------------------------------------------------- */
+
+  .hero .actions {
+    width: 100%;
+
+    margin-top: 27px;
+
+    display: flex;
+
+    align-items: center;
+
+    flex-wrap: wrap;
+
+    gap: 16px;
+  }
+
+
+  .hero .button {
+    padding: 13px 18px;
+
+    white-space: nowrap;
+  }
+
+
+  .hero .text-link {
+    font-size: 0.7rem;
+
+    white-space: nowrap;
+  }
+
+
+  /* -------------------------------------------------------
+     CARD IDEIA CENTRAL
+     ------------------------------------------------------- */
+
+  .hero-card {
+    width: 100%;
+
+    min-height: 330px;
+
+    padding: 34px 27px;
+
+    border-radius: 20px;
+
+    box-shadow:
+      0 18px 45px rgba(20, 36, 31, 0.12);
+  }
+
+
+  .hero-card-label {
+    font-size: 0.58rem;
+
+    letter-spacing: 0.14em;
+  }
+
+
+  .hero-card h2 {
+    max-width: 100%;
+
+    margin: 27px 0 22px;
+
+    font-size: 1.48rem;
+
+    line-height: 1.18;
+  }
+
+
+  .hero-card > div:first-child > p:last-child {
+    max-width: 100%;
+
+    font-size: 0.7rem;
+
+    line-height: 1.7;
+  }
+
+
+  .hero-card-divider {
+    margin: 23px 0;
+  }
+
+
+  .hero-stats {
+    width: 100%;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 10px;
+  }
+
+
+  .hero-stats strong {
+    font-size: 1.2rem;
+  }
+
+
+  .hero-stats span {
+    font-size: 0.49rem;
+  }
+
+
+  /* -------------------------------------------------------
+     REMOVE DETALHE LATERAL DO HERO
+     ------------------------------------------------------- */
+
+  .hero-content::before {
+    display: none;
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE PEQUENO
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+  .site-header:has(.nav-links.open) {
+    padding-bottom: 245px;
+  }
+
+
+  .hero {
+    padding: 55px 16px 65px;
+  }
+
+
+  .hero-inner {
+    gap: 40px;
+  }
+
+
+  .hero h1 {
+    font-size: clamp(
+      2.8rem,
+      12.5vw,
+      3.6rem
+    );
+  }
+
+
+  .hero .lede {
+    font-size: 0.91rem;
+  }
+
+
+  .hero .actions {
+    align-items: flex-start;
+  }
+
+
+  .hero .button {
+    font-size: 0.69rem;
+  }
+
+
+  .hero .text-link {
+    font-size: 0.67rem;
+  }
+
+
+  .hero-card {
+    min-height: 320px;
+
+    padding: 31px 24px;
+  }
+
+
+  .hero-card h2 {
+    font-size: 1.38rem;
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE MUITO PEQUENO
+   ========================================================= */
+
+@media (max-width: 360px) {
+
+  .site-header:has(.nav-links.open) {
+    padding-bottom: 245px;
+  }
+
+
+  .hero {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+
+  .hero h1 {
+    font-size: 2.7rem;
+  }
+
+
+  .hero-author span {
+    max-width: 220px;
+  }
+
+
+  .hero .actions {
+    flex-direction: column;
+
+    align-items: flex-start;
+  }
+
+
+  .hero .text-link {
+    padding-left: 2px;
+  }
+
+
+  .hero-card {
+    padding: 29px 22px;
+  }
+
+}
+
+
+/* =========================================================
+   ACESSIBILIDADE
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .site-header {
+    transition: none;
+  }
+
+}
